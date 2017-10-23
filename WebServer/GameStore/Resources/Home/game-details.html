@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Game Store</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+
+                <h1 class="display-3">{{{titleValue}}}</h1>
+                <br/>
+
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/{{{videoIdValue}}}" frameborder="0"
+                        allowfullscreen></iframe>
+
+                <br/>
+                <br/>
+
+                <p>{{{descriptionValue}}}</p>
+
+                <p><strong>Price</strong> - {{{priceValue}}}&euro;</p>
+                <p><strong>Size</strong> - {{{sizeValue}}} GB</p>
+                <p><strong>Release Date</strong> - {{{releaseDateValue}}}</p>
+
+                <a class="btn btn-outline-primary" href="\">Back</a>
+                <a class="btn btn-warning" style="display: {{{authDisplay}}}" href="\admin\games\edit\{{{gameId}}}">Edit</a>
+                <a class="btn btn-danger" style="display: {{{authDisplay}}}" href="\admin\games\delete\{{{gameId}}}">Delete</a>
+                <a class="btn btn-primary" href="#">Buy</a>
+                <br/>
+                <br/>
+            </div>
+        </div>
+    </div>
+</main>
+<br/>
+
+</body>
+</html>

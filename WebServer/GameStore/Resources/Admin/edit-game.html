@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Game Store</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<main class="col-4 ml-auto mr-auto text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="text-center"><h1 class="display-3">Editing - {{{titleValue}}}</h1></div>
+                <br/>
+                <form method="post">
+                    <div class="form-group row">
+                        <label class="form-control-label">Title</label>
+                        <input pattern="[A-Z].{3,100}" name="title" class="form-control"
+                               placeholder="Enter Game Title" value="{{{titleValue}}}"/>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="form-control-label">Description</label>
+                        <textarea class="form-control" name="description" placeholder="Enter Game Description" minlength="20">{{{descriptionValue}}}</textarea>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="form-control-label">Thumbnail</label>
+                        <input type="url" class="form-control" name="image" placeholder="Enter URL to Image" value="{{{imageValue}}}"/>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="form-control-label">Price</label>
+                        <div class="input-group">
+
+                            <input type="number" step="0.01" min="0" class="form-control" name="price" placeholder="Enter Price" value="{{{priceValue}}}"/>
+                            <span class="input-group-addon">&euro;</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="form-control-label">Size</label>
+                        <div class="input-group">
+
+                            <input type="number" step="0.1" min="0" class="form-control" name="size" placeholder="Enter Size" value="{{{sizeValue}}}"/>
+                            <span class="input-group-addon">GB</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="form-control-label">YouTube Video URL</label>
+                        <div class="input-group">
+                            <span class="input-group-addon">https://www.youtube.com/watch?v=</span>
+                            <input class="form-control" minlength="11" name="videoId" maxlength="11" value="{{{videoIdValue}}}"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="form-control-label">Release Date</label>
+                        <input type="date" class="form-control" name="releaseDate" placeholder="yyyy-MM-dd" value="{{{releaseDateValue}}}"/>
+                    </div>
+
+                    <input type="submit" class="btn btn-outline-warning btn-lg btn-block"
+                           value="Edit Game"/>
+                </form>
+                <br/>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+</body>
+</html>
