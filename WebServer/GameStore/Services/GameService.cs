@@ -130,21 +130,19 @@
             }
         }
 
-        public IEnumerable<AddGameViewModel> GamesInCart(IEnumerable<int> ids)
+        public IEnumerable<HomePageListGamesViewMoodel> GamesInCart(IEnumerable<int> ids)
         {
             using (var db = new GameStoreDbContext())
             {
                 return db.Games
                     .Where(g => ids.Contains(g.Id))
-                    .Select(g => new AddGameViewModel
+                    .Select(g => new HomePageListGamesViewMoodel
                     {
+                        Id = g.Id,
                         Title = g.Title,
                         Price = g.Price,
                         Image = g.Image,
-                        Description = g.Description,
-                        RealeaseDate = g.RealeaseDate.ToString(),
-                        Size = g.Size,
-                        VideoId = g.VideoId
+                        Description = g.Description
                     }).ToList();
             }
         }

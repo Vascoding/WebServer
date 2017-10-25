@@ -49,11 +49,11 @@
                 ";
         }
 
-        public string ShoppingCartGamesViewPattern(string title, string description, decimal price, string image)
+        public string ShoppingCartGamesViewPattern(int id, string title, string description, decimal price, string image)
         {
             return $@"<div class=""list-group-item"">
                 <div class=""media"" >
-                <a class=""btn btn-outline-danger btn-lg align-self-center mr-3"" href =""#"" >X</a>
+                <a class=""btn btn-outline-danger btn-lg align-self-center mr-3"" href =""\user\cart\{id}"" >X</a>
                 <img class=""d-flex mr-4 align-self-center img-thumbnail"" height=""127"" src= ""{image}""
             width = ""227"" alt =""Generic placeholder image"">
                 <div class=""media-body align-self-center"" >

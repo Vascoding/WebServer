@@ -37,7 +37,7 @@
                 var gamesInCart = this.games.GamesInCart(shoppingCart.GameIds);
 
                 var result = gamesInCart.Select(g =>
-                    new HtmlHelper().ShoppingCartGamesViewPattern(g.Title, g.Description, g.Price, g.Image));
+                    new HtmlHelper().ShoppingCartGamesViewPattern(g.Id, g.Title, g.Description, g.Price, g.Image));
 
                 var gamesAsHtml = string.Join(Environment.NewLine, result);
                 this.ViewData["gamesInCart"] = gamesAsHtml;
@@ -69,6 +69,15 @@
             this.shopping.CreateOrder(userEmail.ToString(), shoppingCart.GameIds);
             shoppingCart.GameIds.Clear();
             return new RedirectResponse(@"\");
+        }
+
+        public IHttpResponse Dismiss()
+        {
+            var id = int.Parse(this.Request.UrlParameters["id"]);
+            var shoppingCart = this.Request.Session.Get<ShoppingCart>(ShoppingCart.SessionKey);
+            shoppingCart.GameIds.Remove(id);
+
+            return this.CartDetails();
         }
     }
 }

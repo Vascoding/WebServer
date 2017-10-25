@@ -103,6 +103,9 @@
                 .AddRoute("/user/cart", new PostHandler(req => new ShoppingController(req).Order()));
 
             appRouteConfig
+                .AddRoute("/user/cart/{(?<id>[0-9]+)}", new GetHandler(req => new ShoppingController(req).Dismiss()));
+
+            appRouteConfig
                 .AddRoute("/user/cart/add/{(?<id>[0-9]+)}", new GetHandler(req => new ShoppingController(req).AddToCart()));
 
             

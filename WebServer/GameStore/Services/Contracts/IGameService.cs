@@ -27,6 +27,6 @@
 
         AddGameViewModel Details(int id);
 
-        IEnumerable<AddGameViewModel> GamesInCart(IEnumerable<int> ids);
+        IEnumerable<HomePageListGamesViewMoodel> GamesInCart(IEnumerable<int> ids);
     }
 }
