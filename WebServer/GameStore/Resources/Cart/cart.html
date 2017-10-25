@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Game Store</title>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="text-center">
+                        <h1 class="display-3">Your Cart</h1>
+                    </div>
+                    <br/>
+
+                    <div class="list-group">
+                       {{{gamesInCart}}}
+                        <br/>
+                        <div class="col-8 ml-auto mr-auto mt-5 text-center">
+                            <h1><strong>Total Price - </strong> {{{totalPrice}}} &euro;</h1>
+                        </div>
+                        <div class="col-8  ml-auto mr-auto my-3">
+                            <form method="post">
+
+                                <input type="submit" class="btn btn-success btn-lg btn-block" value="Order" />
+                            </form>
+                        </div>
+                        <br/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+</body>
+
+</html>

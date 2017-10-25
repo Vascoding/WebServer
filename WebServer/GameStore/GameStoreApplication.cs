@@ -95,6 +95,17 @@
 
             appRouteConfig
                 .AddRoute("/games/details/{(?<id>[0-9]+)}", new GetHandler(req => new HomeController(req).Details()));
+
+           appRouteConfig
+                .AddRoute("/user/cart", new GetHandler(req => new ShoppingController(req).CartDetails()));
+
+            appRouteConfig
+                .AddRoute("/user/cart", new PostHandler(req => new ShoppingController(req).Order()));
+
+            appRouteConfig
+                .AddRoute("/user/cart/add/{(?<id>[0-9]+)}", new GetHandler(req => new ShoppingController(req).AddToCart()));
+
+            
         }
     }
 }

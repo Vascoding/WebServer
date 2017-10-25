@@ -26,5 +26,7 @@
         void Delete(int id);
 
         AddGameViewModel Details(int id);
+
+        IEnumerable<AddGameViewModel> GamesInCart(IEnumerable<int> ids);
     }
 }

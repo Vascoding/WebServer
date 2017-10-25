@@ -1,6 +1,5 @@
 ﻿namespace WebServer.GameStore.ViewModels.Games
 {
-    using System;
 
     public class AdminEditGameViewModel
     {

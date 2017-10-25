@@ -1,4 +1,4 @@
-﻿namespace WebServer.ByTheCake.ViewModels
+﻿namespace WebServer.GameStore.ViewModels.Orders
 {
     using System.Collections.Generic;
 
@@ -6,6 +6,7 @@
     {
         public const string SessionKey = "^%Current_Shopping_Cart%^";
 
-        public List<int> ProductIds { get; private set; } = new List<int>();
+        public List<int> GameIds { get; private set; } = new List<int>();
     }
+
 }

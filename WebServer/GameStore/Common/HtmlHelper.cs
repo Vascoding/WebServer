@@ -19,7 +19,7 @@
                 
                 <div class=""card-footer"">
                 <a class=""card-button btn btn-outline-primary"" name= ""info"" href= ""\games\details\{id}"">Info</a>
-                <a class=""card-button btn btn-primary"" name=""buy"" href=""#"" >Buy</a>
+                <a class=""card-button btn btn-primary"" name=""buy"" href=""\user\cart\add\{id}"" >Buy</a>
                 </div>
                 </div>
                 ";
@@ -43,10 +43,30 @@
                 <a class=""btn btn-warning"" href=""/admin/games/edit/{id}"">Edit</a>
                 <a class=""btn btn-danger"" href=""/admin/games/delete/{id}"">Delete</a>
                 <a class=""card-button btn btn-outline-primary"" name= ""info"" href= ""\games\details\{id}"">Info</a>
-                <a class=""card-button btn btn-primary"" name=""buy"" href=""#"" >Buy</a>
+                <a class=""card-button btn btn-primary"" name=""buy"" href=""\user\cart\add\{id}"" >Buy</a>
                 </div>
                 </div>
                 ";
+        }
+
+        public string ShoppingCartGamesViewPattern(string title, string description, decimal price, string image)
+        {
+            return $@"<div class=""list-group-item"">
+                <div class=""media"" >
+                <a class=""btn btn-outline-danger btn-lg align-self-center mr-3"" href =""#"" >X</a>
+                <img class=""d-flex mr-4 align-self-center img-thumbnail"" height=""127"" src= ""{image}""
+            width = ""227"" alt =""Generic placeholder image"">
+                <div class=""media-body align-self-center"" >
+                <a href = ""#"">
+                <h4 class=""mb-1 list-group-item-heading"" >{title}</h4>
+                </a>
+                <p>{description}</p>
+                </div>
+                <div class=""col-md-2 text-center align-self-center mr-auto"" >
+                <h2> {price}&euro; </h2>
+                </div>
+                </div>
+                </div>";
         }
     }
 }

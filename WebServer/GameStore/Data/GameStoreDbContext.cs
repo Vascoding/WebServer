@@ -9,6 +9,8 @@
 
         public DbSet<Game> Games { get; set; }
 
+        public DbSet<UserGame> UserGame { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(@"Server=DESKTOP-924HS8U\SQLEXPRESS;Database=GameStoreDb;Integrated Security=True;");

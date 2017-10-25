@@ -1,9 +1,9 @@
 ﻿namespace WebServer.GameStore.Controllers
 {
-    using WebServer.ByTheCake.Models;
     using WebServer.GameStore.Services;
     using WebServer.GameStore.Services.Contracts;
     using WebServer.GameStore.ViewModels.Account;
+    using WebServer.GameStore.ViewModels.Orders;
     using WebServer.Infrastructure;
     using WebServer.Server.HTTP;
     using WebServer.Server.HTTP.Contracts;
@@ -68,6 +68,7 @@
         private void LoginUser(string email)
         {
             this.Request.Session.Add(SessionStore.CurrentUserKey, email);
+            this.Request.Session.Add(ShoppingCart.SessionKey, new ShoppingCart());
         }
     }
 }

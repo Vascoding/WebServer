@@ -4,11 +4,11 @@
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
-    using ByTheCake.Models;
     using Server.HTTP.Contracts;
     using WebServer.ByTheCake.Data;
     using WebServer.ByTheCake.Services;
     using WebServer.ByTheCake.Services.Contracts;
+    using WebServer.ByTheCake.ViewModels;
     using WebServer.ByTheCake.ViewModels.Products;
     using WebServer.Infrastructure;
     using WebServer.Server.HTTP.Response;

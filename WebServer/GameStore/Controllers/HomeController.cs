@@ -50,9 +50,9 @@
             this.ViewData["sizeValue"] = model.Size.ToString();
             this.ViewData["releaseDateValue"] = model.RealeaseDate;
             this.ViewData["authDisplay"] = "none";
+            this.ViewData["gameId"] = $"{id}";
             if (this.Authentication.IsAdmin)
             {
-                this.ViewData["gameId"] = $"{id}";
                 this.ViewData["authDisplay"] = "inline";
             }
             

@@ -2,7 +2,6 @@
 {
     using Microsoft.EntityFrameworkCore;
     using WebServer.ByTheCake.Data.Models;
-    using WebServer.ByTheCake.Models;
 
     public class ByTheCakeDbContext : DbContext
     {

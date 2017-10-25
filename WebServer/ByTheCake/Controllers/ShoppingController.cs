@@ -3,9 +3,9 @@
     using System;
     using System.Linq;
     using WebServer.ByTheCake.Data;
-    using WebServer.ByTheCake.Models;
     using WebServer.ByTheCake.Services;
     using WebServer.ByTheCake.Services.Contracts;
+    using WebServer.ByTheCake.ViewModels;
     using WebServer.Infrastructure;
     using WebServer.Server.HTTP;
     using WebServer.Server.HTTP.Contracts;

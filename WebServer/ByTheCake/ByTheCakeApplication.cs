@@ -22,6 +22,10 @@
 
         public void Configure(IAppRouteConfig appRouteConfig)
         {
+            appRouteConfig.AnonymousPaths.Add("/login");
+            appRouteConfig.AnonymousPaths.Add("/register");
+            
+
             appRouteConfig
                 .AddRoute("/", new GetHandler(req => new HomeController().Index()));
 
