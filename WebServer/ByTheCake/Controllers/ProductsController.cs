@@ -15,6 +15,12 @@
 
     public class ProductsController : BaseController
     {
+        private const string AddPath = @"products\add";
+        private const string DetailsPath = @"products\details";
+        private const string NotValid = "Product information is not valid.";
+        private const string NoCakes = "No cakes found";
+        private const string SearchPath = @"products\search";
+
         private readonly IProductService products;
 
         public ProductsController()
@@ -26,7 +32,7 @@
         {
             this.SetDefaultViewData();
             this.ViewData["sowResult"] = "none";
-            return this.FileViewResponse(@"products\add");
+            return this.FileViewResponse(AddPath);
         }
 
         public IHttpResponse Add(AddProductViewModel model)
@@ -38,8 +44,8 @@
                 || model.ImageUrl.Length < 3
                 || model.ImageUrl.Length > 2000)
             {
-                this.AddError("Product information is not valid.");
-                return this.FileViewResponse(@"products\add");
+                this.AddError(NotValid);
+                return this.FileViewResponse(AddPath);
             }
 
             this.products.Create(model.Name, model.Price, model.ImageUrl);
@@ -50,7 +56,7 @@
             this.ViewData["imageUrl"] = model.ImageUrl;
             this.ViewData["showResult"] = "block";
 
-            return this.FileViewResponse(@"products\add");
+            return this.FileViewResponse(AddPath);
         }
 
         public IHttpResponse Search(IHttpRequest request)
@@ -70,7 +76,7 @@
 
             if (!result.Any())
             {
-                this.ViewData["results"] = "No cakes found";
+                this.ViewData["results"] = NoCakes;
             }
 
             else
@@ -97,7 +103,7 @@
                 this.ViewData["products"] = $"{totalProducts} {totalProductsString}";
             }
 
-            return this.FileViewResponse(@"products\search");
+            return this.FileViewResponse(SearchPath);
         }
 
         private void SetDefaultViewData()
@@ -119,7 +125,7 @@
             this.ViewData["price"] = product.Price.ToString("f2");
             this.ViewData["imageUrl"] = product.ImageUrl;
 
-            return this.FileViewResponse(@"products\details");
+            return this.FileViewResponse(DetailsPath);
         }
     }
 }

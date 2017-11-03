@@ -5,7 +5,6 @@
     using WebServer.GameStore.Common;
     using WebServer.GameStore.Services;
     using WebServer.GameStore.Services.Contracts;
-    using WebServer.GameStore.ViewModels.Games;
     using WebServer.Server.HTTP.Contracts;
 
     public class HomeController : BaseController

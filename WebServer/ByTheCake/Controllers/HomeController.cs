@@ -4,8 +4,10 @@
 
     public class HomeController : BaseController
     {
-        public IHttpResponse Index() => this.FileViewResponse(@"home\Index");
+        private const string HomeIndex = @"home\Index";
 
-        public IHttpResponse About() => this.FileViewResponse(@"home\about");
+        public IHttpResponse Index() => this.FileViewResponse(HomeIndex);
+
+        public IHttpResponse About() => this.FileViewResponse(HomeIndex);
     }
 }

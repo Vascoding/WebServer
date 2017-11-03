@@ -2,6 +2,7 @@
 {
     using WebServer.Server;
     using WebServer.Server.Contracts;
+
     public class UserDetailsView : IView
     {
         private readonly Model model;

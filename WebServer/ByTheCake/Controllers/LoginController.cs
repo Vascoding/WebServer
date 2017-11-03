@@ -1,21 +1,26 @@
 ﻿namespace WebServer.ByTheCake.Controllers
 {
     using System;
-    using System.Collections.Generic;
     using WebServer.ByTheCake.Services;
     using WebServer.ByTheCake.Services.Contracts;
     using WebServer.ByTheCake.ViewModels;
     using WebServer.ByTheCake.ViewModels.Account;
-    using WebServer.Infrastructure;
     using WebServer.Server.HTTP;
     using WebServer.Server.HTTP.Contracts;
     using WebServer.Server.HTTP.Response;
 
     public class LoginController : BaseController
     {
-        private const string userName = "username";
-        private const string password = "password";
-        private const string invalidInput = "Invalid username or password";
+        private const string InvalidUserDetails = "Invalid user details";
+        private const string TakenUsername = "This username is taken!";
+        private const string EemptyFieldsError = "You have empty fields";
+        private const string LoginPath = @"Login\login";
+        private const string RegisterPath = @"Login\register";
+        private const string ProfilePath = @"login\profile";
+        private const string NotLoggedInUser = "There is no logged in user.";
+        private const string RedirectUrl = "/";
+
+
         private readonly IUserService users;
 
         public LoginController()
@@ -26,7 +31,7 @@
         public IHttpResponse Login()
         {
             this.SetDefaultViewData();
-            return this.FileViewResponse(@"Login\login");
+            return this.FileViewResponse(LoginPath);
         }
 
 
@@ -34,8 +39,8 @@
         {
             if (string.IsNullOrWhiteSpace(model.Username) || string.IsNullOrWhiteSpace(model.Password))
             {
-                this.AddError("You have empty fields");
-                return this.FileViewResponse(@"Login\login");
+                this.AddError(EemptyFieldsError);
+                return this.FileViewResponse(LoginPath);
             }
 
             var success = this.users.FindUser(model.Username, model.Password);
@@ -43,14 +48,14 @@
             if (success)
             {
                 this.LoginUser(request, model.Username);
-                return new RedirectResponse("/");
+                return new RedirectResponse(RedirectUrl);
             }
             else
             {
                 this.ViewData["authDisplay"] = "none";
-                this.AddError("Invalid user details");
+                this.AddError(InvalidUserDetails);
 
-                return this.FileViewResponse(@"Login\login");
+                return this.FileViewResponse(LoginPath);
             }
         }
 
@@ -58,7 +63,7 @@
         {
             if (!req.Session.Contains(SessionStore.CurrentUserKey))
             {
-                throw new InvalidOperationException("There is no logged in user.");
+                throw new InvalidOperationException(NotLoggedInUser);
             }
 
             var username = req.Session.Get<string>(SessionStore.CurrentUserKey);
@@ -74,7 +79,7 @@
             this.ViewData["registrationDate"] = profile.RegistrationDate.ToShortDateString();
             this.ViewData["totalOrders"] = profile.TotalOrders.ToString();
 
-            return this.FileViewResponse(@"login\profile");
+            return this.FileViewResponse(ProfilePath);
         }
 
         public IHttpResponse Logout(IHttpRequest req)
@@ -87,7 +92,7 @@
         public IHttpResponse Register()
         {
             this.SetDefaultViewData();
-            return this.FileViewResponse(@"Login\register");
+            return this.FileViewResponse(RegisterPath);
         }
 
         public IHttpResponse Register(IHttpRequest request, RegisterUserVIewModel model)
@@ -95,9 +100,9 @@
             this.SetDefaultViewData();
             if (model.Username.Length < 3 || model.Password.Length < 3 || model.ConfirmPassword != model.Password)
             {
-                this.AddError("Invalid user details");
+                this.AddError(InvalidUserDetails);
 
-                return this.FileViewResponse(@"/login/register");
+                return this.FileViewResponse(RegisterPath);
             }
 
             var success = this.users.Create(model.Username, model.Password);
@@ -106,13 +111,13 @@
             {
                 this.LoginUser(request, model.Username);
 
-                return new RedirectResponse("/");
+                return new RedirectResponse(RedirectUrl);
             }
             else
             {
-                this.AddError("This username is taken!");
+                this.AddError(TakenUsername);
 
-                return this.FileViewResponse(@"/login/register");
+                return this.FileViewResponse(RegisterPath);
             }
         }
 

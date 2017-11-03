@@ -2,6 +2,7 @@
 {
     using System;
     using WebServer.Server.Contracts;
+
     public class SessionTestView : IView
     {
         private readonly DateTime dateTime;

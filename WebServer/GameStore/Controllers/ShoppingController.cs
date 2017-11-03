@@ -28,7 +28,7 @@
 
             if (!shoppingCart.GameIds.Any())
             {
-                this.ViewData["gamesInCart"] = "";
+                this.ViewData["gamesInCart"] = string.Empty;
                 this.ViewData["totalPrice"] = "0.00";
             }
 

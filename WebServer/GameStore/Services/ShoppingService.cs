@@ -5,6 +5,7 @@
     using WebServer.GameStore.Data;
     using WebServer.GameStore.Data.Models;
     using WebServer.GameStore.Services.Contracts;
+
     public class ShoppingService : IShoppingService
     {
         public void CreateOrder(string userEmail, IEnumerable<int> gameIds)

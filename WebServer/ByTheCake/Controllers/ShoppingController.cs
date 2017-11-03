@@ -13,6 +13,10 @@
 
     public class ShoppingController : BaseController
     {
+        private const string ShoppingCartPath = @"shopping\cart";
+        private const string RedirectUrl = "/";
+        private const string FinishOrderPath = @"shopping/finish-order";
+
         private readonly IUserService users;
         private readonly IProductService products;
         private readonly IShoppingService shopping;
@@ -76,7 +80,7 @@
                 this.ViewData["totalCost"] = $"{totalPrice:f2}";
             }
             
-            return this.FileViewResponse(@"shopping\cart");
+            return this.FileViewResponse(ShoppingCartPath);
         }
 
         public IHttpResponse FinishOrder(IHttpRequest req)
@@ -94,14 +98,14 @@
             var productIds = shoppingCart.ProductIds;
             if (!productIds.Any())
             {
-                return new RedirectResponse("/");
+                return new RedirectResponse(RedirectUrl);
             }
 
             this.shopping.CreateOrder(userId.Value, productIds);
             
             shoppingCart.ProductIds.Clear();
 
-            return this.FileViewResponse(@"shopping/finish-order");
+            return this.FileViewResponse(FinishOrderPath);
         }
     }
 }

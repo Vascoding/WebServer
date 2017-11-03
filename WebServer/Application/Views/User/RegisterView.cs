@@ -2,6 +2,7 @@
 {
     using System.Text;
     using Server.Contracts;
+
     public class RegisterView : IView
     {
         public string View()

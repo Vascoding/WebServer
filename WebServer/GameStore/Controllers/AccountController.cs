@@ -4,13 +4,16 @@
     using WebServer.GameStore.Services.Contracts;
     using WebServer.GameStore.ViewModels.Account;
     using WebServer.GameStore.ViewModels.Orders;
-    using WebServer.Infrastructure;
     using WebServer.Server.HTTP;
     using WebServer.Server.HTTP.Contracts;
     using WebServer.Server.HTTP.Response;
 
     public class AccountController : BaseController
     {
+        private const string RegisterPath = @"\account\register";
+        private const string LoginPath = @"\account\login";
+        private const string LoginErrorView = @"\account\login-error";
+
         private readonly IUserService users;
 
         public AccountController(IHttpRequest request) : base(request)
@@ -20,7 +23,7 @@
 
         public IHttpResponse Register()
         {
-            return this.FileViewResponse(@"\account\register");
+            return this.FileViewResponse(RegisterPath);
         }
 
         public IHttpResponse Register(RegisterViewModel model)
@@ -33,12 +36,12 @@
             this.users.Create(model.Email, model.FullName, model.ConfirmPassword);
 
             this.LoginUser(model.Email);
-            return new RedirectResponse("/");
+            return new RedirectResponse(HomePath);
         }
 
         public IHttpResponse Login()
         {
-            return this.FileViewResponse(@"\account\login");
+            return this.FileViewResponse(LoginPath);
         }
 
         public IHttpResponse Login( LoginUserViewModel model)
@@ -50,19 +53,19 @@
                 if (success)
                 {
                     this.LoginUser(model.Email);
-                    return new RedirectResponse("/");
+                    return new RedirectResponse(HomePath);
                 }
             }
 
 
-            return this.FileViewResponse(@"\account\login-error");
+            return this.FileViewResponse(LoginErrorView);
         }
 
         public IHttpResponse Logout()
         {
             this.Request.Session.Clear();
 
-            return new RedirectResponse("/");
+            return new RedirectResponse(HomePath);
         }
 
         private void LoginUser(string email)

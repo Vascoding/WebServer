@@ -1,6 +1,5 @@
 ﻿namespace WebServer.Application.Controllers
 {
-    using Application.Views.Home;
     using Server.Enums;
     using Server.HTTP.Contracts;
     using Server.HTTP.Response;

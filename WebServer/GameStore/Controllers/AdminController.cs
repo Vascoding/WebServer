@@ -10,6 +10,10 @@
 
     public class AdminController : BaseController
     {
+        private const string AddPath = @"/admin/add-game";
+        private const string RequiredDate = "Release date is required!!!";
+        private const string ListGamesPath = @"/admin/games/list";
+
         private readonly IGameService games;
 
         public AdminController(IHttpRequest request) 
@@ -22,34 +26,34 @@
         {
             if (this.Authentication.IsAdmin)
             {
-                return this.FileViewResponse(@"/admin/add-game");
+                return this.FileViewResponse(AddPath);
             }
-            return new RedirectResponse(@"\");
+            return new RedirectResponse(HomePath);
         }
 
         public IHttpResponse AddGame(AddGameViewModel model)
         {
             if (!this.Authentication.IsAdmin)
             {
-                return new RedirectResponse(@"\");
+                return new RedirectResponse(HomePath);
             }
 
             if (string.IsNullOrWhiteSpace(model.RealeaseDate))
             {
-                this.AddError("Release date is required!!!");
+                this.AddError(RequiredDate);
                 return this.AddGame();
             }
 
             this.games.Create(model.Title, model.Description, model.Image, model.Price, model.Size, model.VideoId, DateTime.Parse(model.RealeaseDate));
 
-            return new RedirectResponse(@"\admin\games\list");
+            return new RedirectResponse(ListGamesPath);
         }
 
         public IHttpResponse AllGames()
         {
             if (!this.Authentication.IsAdmin)
             {
-                return new RedirectResponse(@"\");
+                return new RedirectResponse(HomePath);
             }
 
             var result = this.games
@@ -90,16 +94,16 @@
         {
             if (!this.Authentication.IsAdmin)
             {
-                return new RedirectResponse(@"\");
+                return new RedirectResponse(HomePath);
             }
             var id = int.Parse(this.Request.UrlParameters["id"]);
             if (string.IsNullOrWhiteSpace(model.RealeaseDate)) 
             {
-                this.AddError("Release date is required!!!");
+                this.AddError(RequiredDate);
                 return this.Edit();
             }
             this.games.Edit(id, model);
-            return new RedirectResponse(@"/admin/games/list");
+            return new RedirectResponse(ListGamesPath);
         }
 
         public IHttpResponse Delete()
@@ -120,7 +124,7 @@
         {
             this.games.Delete(id);
 
-            return new RedirectResponse(@"/admin/games/list");
+            return new RedirectResponse(ListGamesPath);
         }
     }
 }
